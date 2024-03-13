@@ -1,8 +1,8 @@
-package br.com.fiap.resources;
+package br.com.fiap.springpfauthentication.resources;
 
-import br.com.fiap.repository.PermissaoRepository;
+import br.com.fiap.springpfauthentication.repository.PermissaoRepository;
 import java.util.List;
-import br.com.fiap.entity.Permissao;
+import br.com.fiap.springpfauthentication.entity.Permissao;
 import jakarta.transaction.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;

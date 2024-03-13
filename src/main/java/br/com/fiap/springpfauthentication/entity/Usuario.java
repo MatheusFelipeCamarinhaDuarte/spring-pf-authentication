@@ -1,4 +1,4 @@
-package br.com.fiap.entity;
+package br.com.fiap.springpfauthentication.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -24,7 +24,5 @@ import lombok.NoArgsConstructor;
         private String email;
 
         private String senha;
-
-        private Pessoa pessoa;
 
         }

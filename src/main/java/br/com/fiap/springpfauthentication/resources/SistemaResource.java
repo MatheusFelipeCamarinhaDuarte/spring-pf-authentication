@@ -1,10 +1,10 @@
-package br.com.fiap.resources;
+package br.com.fiap.springpfauthentication.resources;
 
-import br.com.fiap.repository.SistemaRepository;
-import br.com.fiap.repository.UsuarioRepository;
+import br.com.fiap.springpfauthentication.repository.SistemaRepository;
+import br.com.fiap.springpfauthentication.repository.UsuarioRepository;
 import java.util.List;
-import br.com.fiap.entity.Sistema;
-import br.com.fiap.entity.Usuario;
+import br.com.fiap.springpfauthentication.entity.Sistema;
+import br.com.fiap.springpfauthentication.entity.Usuario;
 import jakarta.transaction.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;

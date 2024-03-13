@@ -1,4 +1,4 @@
-package br.com.fiap.entity;
+package br.com.fiap.springpfauthentication.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

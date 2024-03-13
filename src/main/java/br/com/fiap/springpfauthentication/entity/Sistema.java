@@ -1,12 +1,10 @@
-package br.com.fiap.entity;
+package br.com.fiap.springpfauthentication.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.util.HashSet;
 
 import java.util.LinkedHashSet;
 import java.util.Set;
@@ -32,19 +30,18 @@ import java.util.Set;
         private String sigla;
 
         @ManyToMany(fetch = FetchType.EAGER,cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-
         @JoinTable(
                 name = "TB_SISTEMA_USUARIO",
                     joinColumns = {
                         @JoinColumn(
-                                name = "SISTEMA",
+                                name = "ID_SISTEMA",
                                 referencedColumnName = "ID_SISTEMA",
                                 foreignKey = @ForeignKey(name = "FK_SISTEMA_USUARIO")
                         )
                     },
                 inverseJoinColumns = {
                     @JoinColumn(
-                            name = "USUARIO",
+                            name = "ID_USUARIO",
                             referencedColumnName = "ID_USUARIO",
                             foreignKey = @ForeignKey(name = "FK_USUARIO_SISTEMA")
                     )

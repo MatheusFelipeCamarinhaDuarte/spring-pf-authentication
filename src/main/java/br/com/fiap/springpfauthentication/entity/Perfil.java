@@ -1,12 +1,10 @@
-package br.com.fiap.entity;
+package br.com.fiap.springpfauthentication.entity;
 
-import br.com.fiap.entity.Permissao;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.Id;
 
 import java.util.LinkedHashSet;
 import java.util.Set;
@@ -21,7 +19,7 @@ public class Perfil{
 
     @Id
     @GeneratedValue(strategy=GenerationType.SEQUENCE,generator="SQ_PERFIL")
-    @SequenceGenerator(name="SQ_PERFIL",sequenceName="SQ_PERFIL",initialValue = 1,allocationSize=1)
+    @SequenceGenerator(name="SQ_PERFIL",sequenceName="SQ_PERFIL",allocationSize=1)
     @Column(name="ID_PERFIL")
     private Long id;
 
@@ -34,20 +32,19 @@ public class Perfil{
             name = "TB_PERFIL_PERMISSAO",
             joinColumns = {
                     @JoinColumn(
-                            name = "PERFIL",
+                            name = "ID_PERFIL",
                             referencedColumnName = "ID_PERFIL",
                             foreignKey = @ForeignKey(name = "FK_PERFIL_PERMISSAO")
                     )
             },
             inverseJoinColumns = {
                     @JoinColumn(
-                            name = "PERMISSAO",
+                            name = "ID_PERMISSAO",
                             referencedColumnName = "ID_PERMISSAO",
                             foreignKey = @ForeignKey(name = "FK_PERMISSAO_PERFIL")
                     )
             }
     )
-    private Set<Perfil> Permissoes = new LinkedHashSet<>();
+    private Set<Permissao> permissoes = new LinkedHashSet<>();
 
 }
-
