@@ -23,6 +23,7 @@ import lombok.NoArgsConstructor;
         @Column(name="EMAIL")
         private String email;
 
+        @Column(name="SENHA")
         private String senha;
 
         }

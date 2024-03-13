@@ -4,18 +4,20 @@ import br.com.fiap.springpfauthentication.repository.PermissaoRepository;
 import br.com.fiap.springpfauthentication.repository.PerfilRepository;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 import br.com.fiap.springpfauthentication.entity.Perfil;
 import br.com.fiap.springpfauthentication.entity.Permissao;
 import jakarta.transaction.Transactional;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(value="/perfil")
 public class PerfilResource {
-
+    @Autowired
     private PermissaoRepository permissaoRepository;
-
+    @Autowired
     private PerfilRepository repo;
 
     @GetMapping
@@ -26,6 +28,13 @@ public class PerfilResource {
     @GetMapping(value="/{id}")
     public Perfil findById(@PathVariable Long id) {
         return repo.findById( id ).orElseThrow();
+    }
+
+    @GetMapping(value="/{id}/permissoes")
+    public Set<Permissao> findPermissoesByIdPerfil(@PathVariable Long id) {
+        Perfil perfil = repo.findById(id).orElseThrow();
+
+        return perfil.getPermissoes();
     }
 
 
@@ -52,5 +61,7 @@ public class PerfilResource {
 
         return perfil;
     }
+
+
 
 }

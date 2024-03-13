@@ -1,21 +1,27 @@
 package br.com.fiap.springpfauthentication.resources;
 
+import br.com.fiap.springpfauthentication.entity.Perfil;
+import br.com.fiap.springpfauthentication.entity.Permissao;
 import br.com.fiap.springpfauthentication.repository.SistemaRepository;
 import br.com.fiap.springpfauthentication.repository.UsuarioRepository;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 import br.com.fiap.springpfauthentication.entity.Sistema;
 import br.com.fiap.springpfauthentication.entity.Usuario;
 import jakarta.transaction.Transactional;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(value="/sistema")
 public class SistemaResource {
 
+    @Autowired
     private SistemaRepository repo;
 
+    @Autowired
     private UsuarioRepository usuarioRepository;
 
     @GetMapping
@@ -26,6 +32,13 @@ public class SistemaResource {
     @GetMapping(value="/{id}")
     public Sistema findById(@PathVariable Long id) {
         return repo.findById( id ).orElseThrow();
+    }
+
+    @GetMapping(value="/{id}/responsaveis")
+    public Set<Usuario> findSistemaByIdResponsaveis(@PathVariable Long id) {
+        Sistema sistema = repo.findById(id).orElseThrow();
+
+        return sistema.getResponsaveis();
     }
 
     @Transactional
