@@ -6,10 +6,7 @@ import java.util.List;
 import br.com.fiap.springpfauthentication.entity.Perfil;
 import br.com.fiap.springpfauthentication.entity.Permissao;
 import jakarta.transaction.Transactional;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(value="/perfil")
@@ -21,25 +18,37 @@ public class PerfilResource {
 
     @GetMapping
     public List<Perfil> findAll() {
-        return null;
+        return repo.findAll();
     }
 
     @GetMapping(value="/{id}")
-    public Perfil findById(Long id) {
-        return null;
+    public Perfil findById(@PathVariable Long id) {
+        return repo.findById( id ).orElseThrow();
     }
 
 
     @Transactional
     @PostMapping
-    public Perfil save(Perfil perfil) {
-        return null;
+    public Perfil save(@RequestBody Perfil perfil) {
+        return repo.save( perfil );
     }
 
     @Transactional
     @PostMapping(value="/{id}/permissoes")
-    public Perfil save(Long id, Permissao p) {
-        return null;
+    public Perfil save(@PathVariable Long id, @RequestBody Permissao p) {
+        Perfil perfil = repo.findById(id).orElseThrow();
+
+        if(Objects.isNull(p)) return null;
+
+        if(Objects.nonNull(p.getId())){
+            Permissao permissao = permissaoRepository.findById(p.getId()).orElseThrow();
+            perfil.getPermissoes().add(permissao);
+            return perfil;
+        }
+
+        perfil.getPermissoes().add(p);
+
+        return perfil;
     }
 
 }

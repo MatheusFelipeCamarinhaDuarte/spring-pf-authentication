@@ -6,10 +6,7 @@ import java.util.List;
 import br.com.fiap.springpfauthentication.entity.Sistema;
 import br.com.fiap.springpfauthentication.entity.Usuario;
 import jakarta.transaction.Transactional;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(value="/sistema")
@@ -21,24 +18,36 @@ public class SistemaResource {
 
     @GetMapping
     public List<Sistema> findAll() {
-        return null;
+        return repo.findAll();
     }
 
     @GetMapping(value="/{id}")
-    public Sistema findById(Long id) {
-        return null;
+    public Sistema findById(@PathVariable Long id) {
+        return repo.findById( id ).orElseThrow();
     }
 
     @Transactional
     @PostMapping
-    public Sistema save(Sistema sistema) {
-        return null;
+    public Sistema save(@RequestBody Sistema sistema) {
+        return repo.save( sistema );
     }
 
     @Transactional
     @PostMapping(value="/{id}/responsaveis")
-    public Sistema save(Long id, Usuario u) {
-        return null;
+    public Sistema save(@PathVariable Long id, @RequestBody Usuario u) {
+        Sistema sistema = repo.findById(id).orElseThrow();
+
+        if (Objects.isNull(u)) return null;
+
+        if (Objects.nonNull(u.getId())) {
+            Usuario usuario = usuarioRepository.findById(u.getId()).orElseThrow();
+            sistema.getResponsaveis().add(usuario);
+            return sistema;
+        }
+
+        sistema.getResponsaveis().add(u);
+
+        return sistema;
     }
 
 }
