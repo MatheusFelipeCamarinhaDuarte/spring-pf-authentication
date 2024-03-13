@@ -17,18 +17,18 @@ public class UsuarioResource {
 
     @GetMapping
     public List<Usuario> findAll() {
-        return null;
+        return repo.findAll();
     }
 
     @GetMapping(value="/{id}")
     public Usuario findById(Long id) {
-        return null;
+        return repo.findById( id ).orElseThrow();
     }
 
     @Transactional
     @PostMapping
     public Usuario save(Usuario usuario) {
-        return null;
+        return repo.save( usuario );
     }
 
 }
