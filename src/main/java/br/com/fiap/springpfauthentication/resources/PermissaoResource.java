@@ -17,18 +17,18 @@ public class PermissaoResource {
 
     @GetMapping
     public List<Permissao> findAll() {
-        return null;
+        return repo.findAll();
     }
 
     @GetMapping(value="/{id}")
     public Permissao findById(Long id) {
-        return null;
+        return repo.findById( id ).orElseThrow();
     }
 
     @Transactional
     @PostMapping
     public Permissao save(Permissao permissao) {
-        return null;
+        return repo.save( permissao );
     }
 
 }

@@ -21,25 +21,25 @@ public class PerfilResource {
 
     @GetMapping
     public List<Perfil> findAll() {
-        return null;
+        return repo.findAll();
     }
 
     @GetMapping(value="/{id}")
     public Perfil findById(Long id) {
-        return null;
+        return repo.findById( id ).orElseThrow();
     }
 
 
     @Transactional
     @PostMapping
     public Perfil save(Perfil perfil) {
-        return null;
+        return repo.save( perfil );
     }
 
     @Transactional
     @PostMapping(value="/{id}/permissoes")
-    public Perfil save(Long id, Permissao p) {
-        return null;
+    public Perfil save(Long id, Permissao permissao) {
+        return repo.save( permissao );
     }
 
 }

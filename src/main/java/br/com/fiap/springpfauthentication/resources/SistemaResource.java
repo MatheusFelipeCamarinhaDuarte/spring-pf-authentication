@@ -21,24 +21,24 @@ public class SistemaResource {
 
     @GetMapping
     public List<Sistema> findAll() {
-        return null;
+        return repo.findAll();
     }
 
     @GetMapping(value="/{id}")
     public Sistema findById(Long id) {
-        return null;
+        return repo.findById( id ).orElseThrow();
     }
 
     @Transactional
     @PostMapping
     public Sistema save(Sistema sistema) {
-        return null;
+        return repo.save( sistema );
     }
 
     @Transactional
     @PostMapping(value="/{id}/responsaveis")
     public Sistema save(Long id, Usuario u) {
-        return null;
+        return repo.save( id );
     }
 
 }
