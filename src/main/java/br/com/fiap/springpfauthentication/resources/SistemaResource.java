@@ -3,6 +3,8 @@ package br.com.fiap.springpfauthentication.resources;
 import br.com.fiap.springpfauthentication.repository.SistemaRepository;
 import br.com.fiap.springpfauthentication.repository.UsuarioRepository;
 import java.util.List;
+import java.util.Objects;
+
 import br.com.fiap.springpfauthentication.entity.Sistema;
 import br.com.fiap.springpfauthentication.entity.Usuario;
 import jakarta.transaction.Transactional;
